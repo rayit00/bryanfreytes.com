@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Calculator — Bryan Freytes-Mendez</title>
+    <meta name="description" content="A small formula calculator: enter the fluid amount in fl oz and get the scoops needed and total bottle volume.">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <a class="site-title" href="/index.html">bryan<span>freytes</span>.com</a>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/projects.html">Projects</a></li>
+                <li><a href="/experience.html">Experience</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="page">
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Formula Calculator</h1>
+            <p class="tagline">Enter the fluid amount in fl oz — it tells you the scoops needed and the total bottle volume.</p>
+        </div>
+    </div>
+
+    <section>
+        <div class="card calc-box">
+            <label for="flOz">How much fl oz for formula?</label>
+            <input type="number" id="flOz" name="flOz" value="1" min="0" step="0.5" oninput="calc()">
+            <div class="calc-result">
+                <p>Scoops needed: <span id="scoops">0.5</span></p>
+                <p>Bottle fl oz after adding scoops: <span id="totalFlOz">1.1</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="card">
+            <p><a href="/projects.html#formula-calculator">← Back to Projects</a></p>
+        </div>
+    </section>
+</div>
+
+<footer class="site-footer">
+    <p>Built and hosted by me on a home Linux server. © 2026 Bryan Freytes-Mendez</p>
+</footer>
+
+<script>
+    const SCOOP_FL_OZ = 0.2; // fl oz of fluid per scoop
+
+    function calc() {
+        const amountFluid = Number(document.getElementById("flOz").value);
+        if (Number.isNaN(amountFluid) || amountFluid < 0) {
+            document.getElementById("scoops").textContent = "";
+            document.getElementById("totalFlOz").textContent = "";
+            return;
+        }
+        const scoops = amountFluid / 2;
+        const addedFluid = scoops * SCOOP_FL_OZ;
+        const total = amountFluid + addedFluid;
+        document.getElementById("scoops").textContent = round1(scoops);
+        document.getElementById("totalFlOz").textContent = round1(total);
+    }
+
+    function round1(n) {
+        return Math.round(n * 10) / 10;
+    }
+
+    calc();
+</script>
+</body>
+</html>
