@@ -27,3 +27,5 @@ robots.txt              Robots
 
 - Cloudflare Pages serves `404.html` automatically for unknown paths.
 - Cloudflare injects its own analytics beacon at deploy time — do not add one manually.
+
+The site is served by Cloudflare Pages. The "Personal Linux Server" project is a separate home server for personal services — it does not host this website.
